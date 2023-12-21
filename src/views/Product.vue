@@ -19,7 +19,7 @@
           <div class="product-price">
             <p>{{ product.price }} $</p>
           </div>
-          <button>Add to Cart</button>
+          <button @click="addToCart(product)">Add to Cart</button>
         </li>
       </ul>
     </div>
@@ -40,6 +40,23 @@ onMounted(async () => {
     console.error(error);
   }
 });
+
+const cart = ref([]);
+
+const addToCart = (product) => {
+  if (product) {
+    const existingProduct = cart.value.find((item) => item.id === product.id);
+
+    if (existingProduct) {
+      existingProduct.quantity++;
+    } else {
+      cart.value.push({ ...product, quantity: 1 });
+    }
+
+    console.log("Added to cart:", product);
+    console.log("Cart:", cart.value);
+  }
+};
 </script>
 
 <style scoped>
