@@ -33,6 +33,7 @@
   font-size: 3rem;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: rgb(63, 0, 63);
 }
 
 nav ul {
@@ -43,8 +44,11 @@ nav ul {
 nav ul li:not(:last-child) {
   margin-right: 30px;
 }
-
+nav ul li a {
+  font-weight: bold;
+  transition: 0.5s ease;
+}
 nav ul li a:hover {
-  color: rgb(88, 86, 86);
+  color: rgb(133, 0, 133);
 }
 </style>
