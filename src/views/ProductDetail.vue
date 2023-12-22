@@ -12,7 +12,7 @@
             <h4>{{ product.price }} $</h4>
             <h4>⭐{{ product.rating.rate }}</h4>
           </div>
-          <button>Add to Cart</button>
+          <button @click="addToCart(product)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -35,6 +35,10 @@ const product = computed(() => {
   );
   return selectedProduct;
 });
+
+const addToCart = (product) => {
+  store.dispatch("addToCart", product);
+};
 </script>
 
 <style scoped>
