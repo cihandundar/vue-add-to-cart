@@ -72,6 +72,7 @@ const addToCart = (product) => {
 .section-container-title h1 {
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: rgb(63, 0, 63);
   margin-bottom: 50px;
 }
 
@@ -118,9 +119,14 @@ const addToCart = (product) => {
   width: 100%;
   height: 45px;
   border-radius: 8px;
-  background-color: #000;
+  background-color: rgb(63, 0, 63);
   border: none;
   color: #fff;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.product-card button:hover {
+  background-color: rgb(133, 0, 133);
 }
 </style>
