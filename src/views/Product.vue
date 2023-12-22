@@ -6,13 +6,9 @@
       </div>
       <ul class="product-wrapper">
         <li class="product-card" v-for="product in products" :key="product.id">
-          <router-link
-            :to="{ name: 'productDetail', params: { id: product.id } }"
-          >
-            <div class="product-image">
-              <img :src="product.image" alt="Product Image" />
-            </div>
-          </router-link>
+          <div class="product-image">
+            <img :src="product.image" alt="Product Image" />
+          </div>
           <div class="product-title">
             <h4>{{ product.title }}</h4>
           </div>
@@ -20,6 +16,12 @@
             <p>{{ product.price }} $</p>
           </div>
           <button @click="addToCart(product)">Add to Cart</button>
+          <button
+            style="margin-top: 10px"
+            @click="navigateToDetail(product.id)"
+          >
+            View Details
+          </button>
         </li>
       </ul>
     </div>
@@ -27,35 +29,34 @@
 </template>
 
 <script setup>
+import { useStore } from "vuex";
 import { ref, onMounted } from "vue";
-import axios from "axios";
+import { useRouter } from "vue-router";
 
+const store = useStore();
+const router = useRouter();
 const products = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get("https://fakestoreapi.com/products");
-    products.value = response.data;
+    await store.dispatch("fetchProducts");
   } catch (error) {
     console.error(error);
   }
 });
 
-const cart = ref([]);
+const fetchedProducts = () => store.getters.getProducts;
+
+store.watch(fetchedProducts, (newVal) => {
+  products.value = newVal;
+});
 
 const addToCart = (product) => {
-  if (product) {
-    const existingProduct = cart.value.find((item) => item.id === product.id);
+  store.dispatch("addToCart", product);
+};
 
-    if (existingProduct) {
-      existingProduct.quantity++;
-    } else {
-      cart.value.push({ ...product, quantity: 1 });
-    }
-
-    console.log("Added to cart:", product);
-    console.log("Cart:", cart.value);
-  }
+const navigateToDetail = (productId) => {
+  router.push({ name: "productDetail", params: { id: productId } });
 };
 </script>
 
