@@ -1,5 +1,11 @@
-<script setup></script>
+<script setup>
+import Hero from "@/components/Hero.vue";
+</script>
 
 <template>
-  <main></main>
+  <section class="home">
+    <div class="home-container">
+      <Hero />
+    </div>
+  </section>
 </template>
