@@ -17,7 +17,7 @@
   <RouterView />
 </template>
 
-<script></script>
+<script setup></script>
 
 <style scoped>
 .header-container {
