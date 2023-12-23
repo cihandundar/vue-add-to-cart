@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import imgUrl from "../assets/image/hero.jpg";
+import imgUrl from "../assets/images/hero.jpg";
 </script>
 
 <style>
