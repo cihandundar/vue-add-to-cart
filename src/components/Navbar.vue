@@ -2,7 +2,7 @@
   <header>
     <div class="header-container">
       <div class="logo">
-        <h1>Logo</h1>
+        <img :src="logoUrl" alt="" />
       </div>
       <nav>
         <ul>
@@ -17,7 +17,9 @@
   <RouterView />
 </template>
 
-<script setup></script>
+<script setup>
+import logoUrl from "../assets/images/vue-logo.png";
+</script>
 
 <style scoped>
 .header-container {
@@ -29,11 +31,8 @@
   padding: 20px 0;
 }
 
-.header-container > .logo h1 {
-  font-size: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgb(63, 0, 63);
+.header-container > .logo img {
+  width: 100px;
 }
 
 nav ul {
@@ -47,8 +46,15 @@ nav ul li:not(:last-child) {
 nav ul li a {
   font-weight: bold;
   transition: 0.5s ease;
+  color: #34495e;
 }
 nav ul li a:hover {
-  color: rgb(133, 0, 133);
+  color: #41b883;
+}
+
+@media screen and (max-width: 1024px) {
+  .header-container {
+    max-width: 800px;
+  }
 }
 </style>

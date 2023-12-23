@@ -73,8 +73,8 @@ const navigateToDetail = (productId) => {
 .section-container-title h1 {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: rgb(63, 0, 63);
   margin-bottom: 50px;
+  color: #34495e;
 }
 
 .product-wrapper {
@@ -103,6 +103,7 @@ const navigateToDetail = (productId) => {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: #34495e;
 }
 
 .product-image img {
@@ -111,23 +112,20 @@ const navigateToDetail = (productId) => {
   object-fit: contain;
 }
 
-.product-price {
+.product-price p {
   margin-bottom: 10px;
   font-weight: bold;
+  color: #34495e;
 }
 
 .product-card button {
   width: 100%;
   height: 45px;
   border-radius: 8px;
-  background-color: rgb(63, 0, 63);
+  background-color: #41b883;
   border: none;
   color: #fff;
   cursor: pointer;
   transition: 0.5s ease;
-}
-
-.product-card button:hover {
-  background-color: rgb(133, 0, 133);
 }
 </style>

@@ -48,19 +48,28 @@ import imgUrl from "../assets/images/hero.jpg";
 .hero-text h3 {
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: #34495e;
 }
 .hero-text p {
   margin-block: 15px;
+  color: #34495e;
 }
 
 .hero-text button {
   padding: 15px 40px;
-  background-color: rgb(63, 0, 63);
+  background-color: #41b883;
   border: none;
   cursor: pointer;
 }
 
 .hero-text button a {
   color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+  .hero-item {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>

@@ -17,7 +17,7 @@
             </div>
             <div class="cart-item-price">
               <h3>{{ item.title }}</h3>
-              <p>{{ item.price }} $</p>
+              <h4>{{ item.price }} $</h4>
               <p>Quantity: {{ item.quantity }}</p>
               <button @click="removeItem(item.id)">Remove</button>
             </div>
@@ -47,10 +47,17 @@ const removeItem = (productId) => {
 .cart-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 30px;
 }
 
 .cart-container-title {
   text-align: center;
+}
+.cart-container-title h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  color: #34495e;
 }
 
 .empty-cart-message {
@@ -63,7 +70,7 @@ const removeItem = (productId) => {
 .empty-cart-message button {
   margin-top: 10px;
   padding: 15px 40px;
-  background-color: rgb(63, 0, 63);
+  background-color: #41b883;
   border: none;
   cursor: pointer;
 }
@@ -95,7 +102,7 @@ const removeItem = (productId) => {
 .cart-item-price button {
   margin-top: 10px;
   padding: 15px 40px;
-  background-color: rgb(63, 0, 63);
+  background-color: #41b883;
   border: none;
   cursor: pointer;
   color: #fff;
@@ -109,5 +116,9 @@ const removeItem = (productId) => {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: #34495e;
+}
+.cart-item-price h4 {
+  color: #34495e;
 }
 </style>
