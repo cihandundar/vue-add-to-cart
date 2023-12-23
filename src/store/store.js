@@ -64,8 +64,6 @@ const store = createStore({
     },
     removeFromCart({ commit }, productId) {
       commit("removeFromCart", productId);
-      const updatedCartTotal = context.getters.cartTotal;
-      commit("updateCartTotal", updatedCartTotal);
     },
   },
   getters: {

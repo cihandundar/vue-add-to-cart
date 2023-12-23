@@ -121,4 +121,10 @@ const removeItem = (productId) => {
 .cart-item-price h4 {
   color: #34495e;
 }
+
+@media screen and (max-width: 1024px) {
+  .cart-items {
+    justify-content: center;
+  }
+}
 </style>
