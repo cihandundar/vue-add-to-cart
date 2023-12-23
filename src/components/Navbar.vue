@@ -32,7 +32,7 @@ import logoUrl from "../assets/images/vue-logo.png";
 }
 
 .header-container > .logo img {
-  width: 100px;
+  width: 80px;
 }
 
 nav ul {
@@ -55,6 +55,21 @@ nav ul li a:hover {
 @media screen and (max-width: 1024px) {
   .header-container {
     max-width: 800px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
 </style>

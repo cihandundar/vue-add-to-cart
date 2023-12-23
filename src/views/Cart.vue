@@ -4,7 +4,7 @@
       <div class="cart-container-title">
         <h1>Shopping Cart</h1>
         <div v-if="cartItems.length === 0" class="empty-cart-message">
-          <img :src="shoppingUrl" />
+          <img :src="imgUrl" />
           <p>Your cart is empty</p>
           <button><RouterLink to="/product">Shopping Now</RouterLink></button>
         </div>
@@ -33,7 +33,7 @@
 
 <script setup>
 import { useStore } from "vuex";
-import shoppingUrl from "../assets/images/shopping.jpg";
+import imgUrl from "../assets/images/hero.jpg";
 const store = useStore();
 const cartItems = store.state.cart;
 const cartTotal = store.getters.cartTotal;

@@ -64,21 +64,24 @@ const addToCart = (product) => {
 .details-container-right h3 {
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: #34495e;
 }
 .details-container-right p {
   margin-block: 20px;
+  color: #34495e;
 }
 .details-container-right-rate {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #34495e;
 }
 
 .details-container-right button {
   width: 100%;
   height: 45px;
   border-radius: 8px;
-  background-color: rgb(63, 0, 63);
+  background-color: #41b883;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -86,7 +89,10 @@ const addToCart = (product) => {
   margin-top: 15px;
 }
 
-.details-container-right button:hover {
-  background-color: rgb(133, 0, 133);
+@media screen and (max-width: 768px) {
+  .details-container-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
