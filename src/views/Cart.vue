@@ -18,7 +18,12 @@
             <div class="cart-item-price">
               <h3>{{ item.title }}</h3>
               <h4>{{ item.price }} $</h4>
-              <p>Quantity: {{ item.quantity }}</p>
+              <div class="cart-item-quantity">
+                <button @click="increaseQuantity(item.id)">+</button>
+                <p>{{ item.quantity }}</p>
+                <button @click="decreaseQuantity(item.id)">-</button>
+              </div>
+              <h4>Total: {{ item.price * item.quantity }} $</h4>
               <button @click="removeItem(item.id)">Remove</button>
             </div>
           </div>
@@ -33,13 +38,23 @@
 
 <script setup>
 import { useStore } from "vuex";
+import { computed } from "vue";
 import imgUrl from "../assets/images/hero.jpg";
 const store = useStore();
 const cartItems = store.state.cart;
-const cartTotal = store.getters.cartTotal;
+const cartTotal = computed(() => store.getters.cartTotal);
 
 const removeItem = (productId) => {
   store.dispatch("removeFromCart", productId);
+};
+const increaseQuantity = (productId) => {
+  store.dispatch("increaseQuantity", productId);
+  store.commit("updateCartTotal");
+};
+
+const decreaseQuantity = (productId) => {
+  store.dispatch("decreaseQuantity", productId);
+  store.commit("updateCartTotal");
 };
 </script>
 
@@ -121,11 +136,24 @@ const removeItem = (productId) => {
 .cart-item-price h4 {
   color: #34495e;
 }
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-item-quantity p {
+  margin-inline: 10px;
+}
+.cart-item-quantity button {
+  padding: 8px;
+}
 .total {
   margin-top: 10px;
   text-align: center;
   color: #34495e;
 }
+
 @media screen and (max-width: 1024px) {
   .cart-items {
     justify-content: center;
