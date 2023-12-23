@@ -26,6 +26,7 @@ const store = createStore({
       }
       toast.success("Added to cart 🚀");
       localStorage.setItem("cart", JSON.stringify(state.cart));
+      this.commit("updateCartTotal");
     },
     removeFromCart(state, productId) {
       const index = state.cart.findIndex((item) => item.id === productId);
@@ -35,13 +36,53 @@ const store = createStore({
         localStorage.setItem("cart", JSON.stringify(state.cart));
       }
     },
-    updateCartTotal(state, updatedTotal) {
-      state.cartTotal = updatedTotal;
-      localStorage.setItem("cartTotal", updatedTotal);
+    updateCartTotal(state) {
+      state.cartTotal = state.cart
+        .reduce((total, item) => {
+          return total + item.price * item.quantity;
+        }, 0)
+        .toFixed(2);
+      localStorage.setItem("cartTotal", state.cartTotal);
     },
+    increaseProductQuantity(state, productId) {
+      const product = state.cart.find((item) => item.id === productId);
+      if (product) {
+        product.quantity++;
+        product.priceTotal = (product.price * product.quantity).toFixed(2);
+      }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+      this.commit("updateCartTotal");
+      this.commit("saveCartToLocalStorage");
+    },
+
+    decreaseProductQuantity(state, productId) {
+      const productIndex = state.cart.findIndex(
+        (item) => item.id === productId
+      );
+      if (productIndex !== -1) {
+        const product = state.cart[productIndex];
+        if (product.quantity > 1) {
+          product.quantity--;
+          product.priceTotal = (product.price * product.quantity).toFixed(2);
+        } else {
+          state.cart.splice(productIndex, 1);
+          toast.error("Removed from cart 🗑️");
+        }
+        localStorage.setItem("cart", JSON.stringify(state.cart));
+        this.commit("updateCartTotal");
+        this.commit("saveCartToLocalStorage");
+      }
+    },
+
+    saveCartToLocalStorage(state) {
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+      localStorage.setItem("cartTotal", state.cartTotal);
+    },
+
     loadCartFromLocalStorage(state) {
       const cart = localStorage.getItem("cart");
       const cartTotal = localStorage.getItem("cartTotal");
+
       if (cart) {
         state.cart = JSON.parse(cart);
       }
@@ -64,6 +105,12 @@ const store = createStore({
     },
     removeFromCart({ commit }, productId) {
       commit("removeFromCart", productId);
+    },
+    increaseQuantity({ commit }, productId) {
+      commit("increaseProductQuantity", productId);
+    },
+    decreaseQuantity({ commit }, productId) {
+      commit("decreaseProductQuantity", productId);
     },
   },
   getters: {
